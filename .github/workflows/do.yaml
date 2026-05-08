@@ -12,15 +12,14 @@ jobs:
     steps:
       - name: simple-web
         run: |
+          ls -al
           pwd
-          ls -al
-          echo "This is the first CI/CD step" >> a.txt
-          ls -al
-          cat a.txt
 
-    steps:
       - name: simple-web2
         run: |
-          echo "This is the second CI/CD step" >> b.txt
+          echo "This is the second CI/CD step" >> a.txt
+
+      - name: simple-web3
+        run: |
           ls -al
-          cat b.txt
+          cat a.txt
