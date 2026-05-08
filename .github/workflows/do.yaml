@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: simple-web
+      - name: files-check
         run: |
           ls -al
           pwd
 
-      - name: simple-web2
+      - name: file-create
         run: |
           echo "This is the second CI/CD step" >> a.txt
 
@@ -23,3 +23,17 @@ jobs:
         run: |
           ls -al
           cat a.txt
+
+github-variables-check-job:
+  runs-on: linux-latest
+
+  steps:
+    - name: multiple-lines
+      run: |
+        echo "line 1"
+        echo "line 2""
+
+    - name: github-variables-check
+      run: |
+        echo $GITHUB_SHA
+        echo $GITHUB_REPOSITORY
