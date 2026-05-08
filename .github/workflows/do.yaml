@@ -2,7 +2,7 @@ name: Github Actions 실행하기
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -11,4 +11,9 @@ jobs:
 
     steps:
       - name: simple-web
-        run: echo "This is the first CI/CD step"
+        run: |
+          pwd
+          ls -al
+          echo "This is the first CI/CD step" >> a.txt
+          ls -al
+          cat a.txt
