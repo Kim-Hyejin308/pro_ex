@@ -5,45 +5,26 @@ on:
     branches:
       - main
 
+env:
+  EC2_HOST: ${{ secrets.EC2_HOST }}
+  EC2_USER: ${{ secrets.EC2_USER }}
+  EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+  deploy_path: /var/www/html
+
 jobs:
-  # My-first-CICD-job:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: files-check
-  #       run: |
-  #         ls -al
-  #         pwd
-
-  #     - name: file-create
-  #       run: |
-  #         echo "This is the second CI/CD step" >> a.txt
-
-  #     - name: simple-web3
-  #       run: |
-  #         ls -al
-  #         cat a.txt
-
-  # github-variables-check-job:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - name: multiple-lines
-  #       run: |
-  #         echo "line 1"
-  #         echo "line 2"
-
-  #     - name: github-variables-check
-  #       run: |
-  #         echo $GITHUB_SHA
-  #         echo $GITHUB_REPOSITORY
-  # secret-variables-check-job:
-  #   runs-on: ubuntu-latest
-  deployment-job:
+  code-fetch-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: secret-variables-check
-        run: |
-          echo ${{ secrets.EC2_USER }}
-          echo ${{ secrets.EC2_PEM_KEY }}
+      - name: checkout source
+        uses: actions/checkout@v4
+
+      - name: Deploy via ec2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ec2_host
+          username: ec2_username
+          key: EC2_PRIVATE_KEY
+          script: |
+            cd /home/ubuntu/pro_ex
+            ls -al
