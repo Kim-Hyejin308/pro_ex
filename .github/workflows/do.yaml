@@ -1,4 +1,4 @@
-name: Github Actions 실행하기
+name: Github Actions 을 이용해 배포하기
 
 on:
   push:
@@ -6,40 +6,42 @@ on:
       - main
 
 jobs:
-  My-first-CICD-job:
-    runs-on: ubuntu-latest
+  # My-first-CICD-job:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: files-check
-        run: |
-          ls -al
-          pwd
+  #   steps:
+  #     - name: files-check
+  #       run: |
+  #         ls -al
+  #         pwd
 
-      - name: file-create
-        run: |
-          echo "This is the second CI/CD step" >> a.txt
+  #     - name: file-create
+  #       run: |
+  #         echo "This is the second CI/CD step" >> a.txt
 
-      - name: simple-web3
-        run: |
-          ls -al
-          cat a.txt
+  #     - name: simple-web3
+  #       run: |
+  #         ls -al
+  #         cat a.txt
 
-  github-variables-check-job:
-    runs-on: ubuntu-latest
+  # github-variables-check-job:
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: multiple-lines
-        run: |
-          echo "line 1"
-          echo "line 2"
+  #   steps:
+  #     - name: multiple-lines
+  #       run: |
+  #         echo "line 1"
+  #         echo "line 2"
 
-      - name: github-variables-check
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-  secret-variables-check-job:
-    runs-on: ubuntu-latest
-
+  #     - name: github-variables-check
+  #       run: |
+  #         echo $GITHUB_SHA
+  #         echo $GITHUB_REPOSITORY
+  # secret-variables-check-job:
+  #   runs-on: ubuntu-latest
+  deployment-job:
+  runs-on: ubuntu-latest
+  
     steps:
       - name: secret-variables-check
         run: |
